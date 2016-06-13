@@ -47,11 +47,11 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 }
 \examples{
 ##
-#ppt = power.pois.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
-#ppt = power.pois.test(n = 75, s0 = 0.83, power = 0.8, followup = 3.08, sig.level = 0.1)
+#ppt = power.surv.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
+#ppt = power.surv.test(n = 75, s0 = 0.83, power = 0.8, followup = 3.08, sig.level = 0.1)
 
-ppt = power.pois.test(power = 0.8, s0 = 0.83, s1 = 0.92, followup = 3, sig.level = 0.1)
-print(ppt, digits = 4)
+pn = power.surv.test(power = 0.8, s0 = 0.83, s1 = 0.92, followup = 3, sig.level = 0.1)
+print(pn, digits = 4)
 }
 \keyword{ Power } 
 \keyword{ Sample size}
