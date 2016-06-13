@@ -9,7 +9,7 @@ Power and sample size calculations for survival distribution (one sample)
 Compute power and sample size of test or determine distribution of alternative hypothesis to obtain target power (same as power.anova.test).
 }
 \usage{
-power.surv.test(n = NULL, sig.level = 0.05, s0 = 0.5, s1 = NULL, 
+power.surv.test(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, 
                          year = 3, followup = 3,
                          power = NULL, tol = .Machine$double.eps^0.25)
 }
@@ -17,7 +17,7 @@ power.surv.test(n = NULL, sig.level = 0.05, s0 = 0.5, s1 = NULL,
   \item{n}{Number of observations}
   \item{sig.level}{Significance level (Type I error probability)}
   \item{year}{Time point in which survival function is evaluated}
-  \item{follow-up}{Years of followup}
+  \item{followup}{Years of followup}
   \item{s0}{Survival function at yaer = year under H0}
   \item{s1}{Survival function at yaer = year under H1}
   \item{power}{Power of test (1 minus Type II error probability)}
@@ -29,6 +29,9 @@ These calculations use Poisson process and person-year under exponentioal distri
 }
 \value{
 Object of class '"power.htest"', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
+
+  \item{person.year}{Total person-year of followup required for the final analysis}
+  \item{crtl.value}{Critical value to reject the null hypothesis H0: S(year) > s0}
 }
 \references{
 Lawless, J.  (2014). Survaval Analysis.
@@ -47,11 +50,11 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 }
 \examples{
 ##
-#ppt = power.surv.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
-#ppt = power.surv.test(n = 75, s0 = 0.83, power = 0.8, followup = 3.08, sig.level = 0.1)
+#pw = power.surv.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
+#pw = power.surv.test(n = 75, s0 = 0.83, power = 0.8, followup = 3.08, sig.level = 0.1)
 
-pn = power.surv.test(power = 0.8, s0 = 0.83, s1 = 0.92, followup = 3, sig.level = 0.1)
-print(pn, digits = 4)
+pw = power.surv.test(power = 0.8, s0 = 0.83, s1 = 0.92, followup = 3, sig.level = 0.1)
+print(pw, digits = 4)
 }
 \keyword{ Power } 
 \keyword{ Sample size}

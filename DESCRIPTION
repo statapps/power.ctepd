@@ -5,7 +5,7 @@ Version: 0.05
 Date: 2016-06-11
 Author: Bingshu E. Chen
 Maintainer: Bingshu E. Chen <bingshu.chen@queensu.ca>
-Depends: survival
+Depends: survival, pwr
 Description: power.ctepd is a set of tools to calculate power and sample size for clinical trilas and epidemiology. 
 License: GPL (>=2)
 LazyLoad: yes

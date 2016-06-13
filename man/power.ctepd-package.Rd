@@ -44,5 +44,5 @@ Chen, B. E., Jiang, W. and Tu, D. (2014). A hierarchical Bayes model for biomark
 \code{pwr.2p.test}
 }
 \examples{
-ppt = power.pois.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
+pw = power.surv.test(n = 75, s0 = 0.83, s1 = 0.92, sig.level = 0.1)
 } 
