@@ -22,7 +22,7 @@ power.surv.test(n = NULL, sig.level = 0.05, s0 = 0.5, s1 = NULL,
   \item{s1}{Survival function at yaer = year under H1}
   \item{power}{Power of test (1 minus Type II error probability)}
   \item{tol}{tol for uniroot}
-
+}
 
 \details{
 These calculations use Poisson process and person-year under exponentioal distribution.
