@@ -1,5 +1,4 @@
 \name{power.surv.test}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \alias{power.surv.test}
 
 \title{
@@ -17,24 +16,27 @@ power.surv.test(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   \item{n}{Number of observations}
   \item{sig.level}{Significance level (Type I error probability)}
   \item{year}{Time point in which survival function is evaluated}
-  \item{followup}{Years of followup}
   \item{s0}{Survival function at yaer = year under H0}
   \item{s1}{Survival function at yaer = year under H1}
+  \item{followup}{Years of followup}
   \item{power}{Power of test (1 minus Type II error probability)}
-  \item{tol}{tol for uniroot}
+  \item{tol}{tol for uniroot function}
 }
 
 \details{
 These calculations use Poisson process and person-year under exponentioal distribution.
+
+Exactly one of the parameters 'n','power' and 's1' must be passed as NULL, and that parameter is determined from the others. 
+Notice that the last one has non-NULL default so NULL must be explicitly passed if you want to compute it.
 }
 \value{
-Object of class '"power.htest"', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
+Object of class 'power.htest', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
 
   \item{person.year}{Total person-year of followup required for the final analysis}
-  \item{crtl.value}{Critical value to reject the null hypothesis H0: S(year) > s0}
+  \item{crtl.value}{Critical value to reject the null hypothesis H0}
 }
 \references{
-Lawless, J.  (2014). Survaval Analysis.
+Lawless, J. Statistical Models and Methods for Lifetime Data, John Wiley and Sons, 1982 (equation 3.2.7 (page 108).
 }
 \author{
 Bingshu E. Chen (bingshu.chen@queensu.ca)

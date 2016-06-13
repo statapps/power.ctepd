@@ -3,15 +3,15 @@
 \alias{power.ctepd-doc}
 \docType{package}
 \title{
-Biomarker Threshold Models
+Power and sample size for clinical trials and epidemiology
 }
 \description{
-This package fits a threshold regression model for predictive and prognostic biomarker effect 
-for binary data and survival data with an unknown cutoff point of biomarker.
+This package provides a set of tools for power and sample size calculations in clinical trials 
+and epidemiology.
 }
 \details{
-"power.ctepd" is a R package for Biomarker Threshold Models.
-Please use the following steps to install 'bhthm' package:
+"power.ctepd" is a R package for power and sample size calculatins in clinical trials and epidemiology.
+Please use the following steps to install 'power.ctepd' package:
 
 1. First, you need to install the 'devtools' package. You can skip this step if you have 'devtools' installed in your R. Invoke R and then type
 

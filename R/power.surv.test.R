@@ -15,7 +15,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     
     k = qpois(sig.level, person.year*lambda0)
     alpha = ppois(k, person.year*lambda0)
-    while(k>0 & alpha > sig.level){
+    while(k>0 & alpha > sig.level*1.001){
       k = k - 1
       alpha =  ppois(k, person.year*lambda0)
     }
@@ -35,13 +35,15 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
 
   n = ceiling(n)
   power = eval(p.body)
+  lambda = k/person.year
+  crtl.survf= exp(-lambda*year)
   
-  alternative = 'less'
+  alternative = 'greater'
   NOTE = 'Based on the assumption of Poisson Process'
   METHOD = 'One sample test for survival distribution'
 
   structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, 
-     crtl.value = k, sig.level = sig.level, 
+     crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, 
      power = power, alternative = alternative, note = NOTE, 
      method = METHOD), class = "power.htest")
 }
