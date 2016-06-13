@@ -1,0 +1,27 @@
+#citHeader("To cite package 'power.ctepd' in publications use:")
+
+# Grab the version and date from the DESCRIPTION file
+if(!exists("meta") || is.null(meta)) meta <- packageDescription("power.ctepd")
+#year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date)
+vers <- paste("R package version", meta$Version)
+
+bibentry(bibtype="Manual",
+         title = "A Package for Power and Sample size in Clinical Trials and Epidemiology",
+	 author= c(person(c("Bingshu E"), "Chen")),
+	 year = "2016",
+	 note =vers,
+ 	 url="http://CRAN.R-project.org/package=power.ctepd",
+	 key= "power.ctepd"
+	 )
+
+bibentry(bibtype= "article",
+         title="Sample size for quantile regression",
+	 author=c(person(c("Bingshu E"), "Chen"),
+	          person(c("Zhenxiana"), "Gong"),
+		  person(c("Dongsheng"), "Tu")),
+         year = "2016",
+         journal= "Data Analysis",
+         address = "New York",
+         isbn = "",
+	 key = "Sample size"
+	 )
