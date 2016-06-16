@@ -15,7 +15,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     
     k = qpois(sig.level, person.year*lambda0)
     alpha = ppois(k, person.year*lambda0)
-    while(k>0 & alpha > sig.level*1.001){
+    while(k>0 & alpha > sig.level){
       k = k - 1
       alpha =  ppois(k, person.year*lambda0)
     }

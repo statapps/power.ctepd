@@ -2,7 +2,7 @@
 \alias{power.surv.test}
 
 \title{
-Power and sample size calculations for survival distribution (one sample)
+Power and sample size for survival distribution (one sample)
 }
 \description{
 Compute power and sample size of test or determine distribution of alternative hypothesis to obtain target power (same as power.anova.test).
@@ -33,7 +33,8 @@ Notice that the last one has non-NULL default so NULL must be explicitly passed 
 Object of class 'power.htest', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
 
   \item{person.year}{Total person-year of followup required for the final analysis}
-  \item{crtl.value}{Critical value to reject the null hypothesis H0}
+  \item{crtl.event}{Critical value for number of observed events to reject the null hypothesis H0}
+  \item{crtl.survf}{Critical value for observed survival function at year = year to reject the null hypothesis H0}
 }
 \references{
 Lawless, J. Statistical Models and Methods for Lifetime Data, John Wiley and Sons, 1982 (equation 3.2.7 (page 108).
