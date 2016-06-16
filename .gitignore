@@ -11,6 +11,9 @@
 # RStudio files
 .Rproj.user/
 
+# vi swap files
+*.swp
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
