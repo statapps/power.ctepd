@@ -2,8 +2,8 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
                         R2=NULL, rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
                         edf=1, genModel=c('co.dom', 'co.dom2', 'dom', 'rec'), 
                         tol = .Machine$double.eps^0.25) {
-#  if (sum(sapply(list(n1, power, rr), is.null)) != 1) 
-#    stop("exactly one of 'n', 'power', 'rr', must be NULL")
+  if (sum(sapply(list(n1, power, rr), is.null)) != 1) 
+    stop("exactly one of 'n', 'power', 'rr', must be NULL")
   genModel = match.arg(genModel)
   pd = daf
   p1 = maf
@@ -31,6 +31,9 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
   
   alpha = sig.level/edf
   Fd = c((1-pd)^2, 2*pd*(1-pd), pd^2)
+  Penetrance = NULL
+  METHOD = NULL
+  n0 = NULL
 
   p.body = quote({
     if(is.null(rr2))  rr2 = rr*rr
@@ -52,7 +55,7 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
     df0 = P0[2]/2+P0[3]
     df1 = P1[2]/2+P1[3]
     if(genModel == 'co.dom') {
-      fullname = 'Co-dominant model (1 degree of freedom)'
+      METHOD = 'Co-dominant model (1 degree of freedom)'
       n0 = n1*cc.ratio
       N = rbind(n1*P1, n0*P0)
       Y = c(0, 1, 2)   # score
@@ -70,7 +73,7 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
       x = qchisq(1-alpha, 1)
       1 - pchisq(x, 1, ncp=delta)
     } else if (genModel == 'co.dom2') {
-      fullname = 'Co-dominant model (2 degrees of freedom)'
+      METHOD = 'Co-dominant model (2 degrees of freedom)'
       n0 = n1*cc.ratio
       N = rbind(n1*P1, n0*P0)
       dp2 = (P0-P1)^2
@@ -80,7 +83,7 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
       x = qchisq(1-alpha, 2)
       1 - pchisq(x, 2, ncp=delta)
     } else if(genModel=='dom'){
-      fullname = 'Dominant model'
+      METHOD = 'Dominant model'
       rr2 = RR[3]
       n0 = n1*cc.ratio
       N = rbind(n1*P1, n0*P0)
@@ -92,7 +95,7 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
       z = abs(sc)/sd
       1-pnorm(x, z, 1) + pnorm(-x, z, 1);
     } else if(genModel=='rec'){
-      fullname = 'Recessive model'
+      METHOD = 'Recessive model'
       n0 = n1*cc.ratio
       N = rbind(n1*P1, n0*P0)
       x = abs(qnorm(alpha/2, 0, 1))
@@ -105,7 +108,6 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
     }
   })  
   
-  
   if(is.null(n1)) 
     n1 = uniroot(function(n1) eval(p.body)-power, c(2,1e+06), tol=tol)$root
   n1 = ceiling(n1)
@@ -114,8 +116,8 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
   
   power = eval(p.body)
   NOTE = 'Power for genetics case control studies'
-  #print(power)
   structure(list(case.control = c(n1, n0), n.total = n0+n1, sig.level = sig.level, 
-                 sig.adjust = alpha, power = power, rr = rr, rr2 = rr2, D = D, 
-                 note = NOTE, method = fullname), class = "power.htest")
+                 sig.adjust = alpha, power = power, rr = rr, rr2 = rr2, D = D,
+                 Penetrance = Penetrance,  
+                 note = NOTE, method = METHOD), class = "power.htest")
 }

@@ -1,5 +1,6 @@
 \name{power.cc.snp}
 \alias{power.cc.snp}
+\alias{power.cc.hap}
 
 \title{
 Power and sample size for case-control genetics studies
@@ -12,6 +13,11 @@ Power and sample size for case-control genetics studies
               R2=NULL, rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
               edf=1, genModel=c('co.dom', 'co.dom2', 'dom', 'rec'),
               tol = .Machine$double.eps^0.25)
+
+  power.cc.hap(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2, 
+              rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
+              genModel=c('co.dom', 'co.dom2', 'dom', 'rec'),
+              tol = .Machine$double.eps^0.25)
 }
 \arguments{
   \item{n1}{Number of cases}
@@ -21,8 +27,10 @@ Power and sample size for case-control genetics studies
   \item{Dp}{D', default is 1, only specify one of Dp and R2}
   \item{R2}{R-square, default is 1}
   \item{p0}{Disease prevalence, default is 0.01}
-  \item{daf}{Disease allele frequency, default is 0.05}
   \item{maf}{Minor allele frequency, default is 0.05}
+  \item{daf}{Disease allele frequency, default is 0.05}
+  \item{dhf}{Disease haplotype frequency, default is 0.05}
+  \item{n.hap}{Number of haplotypes, default is 2}
   \item{rr}{Relative risk (RR)}
   \item{rr2}{Second relative risk for co-dominant model}
   \item{genModel}{'co.dom': co-dominant mdoel (1 df), 'co.dom2', co-dominant model (2df), 'dom': dominant model, 'rec': recessive model}
@@ -31,10 +39,10 @@ Power and sample size for case-control genetics studies
 }
 
 \details{
-Calculate power and sample size of case-control study for SNP analysis using a co-dominant, dominant or recessive disease susceptibility model.
+Calculate power and sample size of case-control study for genetics analysis (either SNP or haplotype) using a co-dominant, dominant or recessive disease susceptibility model.
 The algorithm is based on methods proposed by Menash, Ronenberg and Chen (2008).
   
-  Exactly one of the parameters 'n','power' and 's1' must be passed as NULL, and that parameter is determined from the others. 
+  Exactly one of the parameters 'n1','power' and 'rr' must be passed as NULL, and that parameter is determined from the others. 
   Notice that the last one has non-NULL default so NULL must be explicitly passed if you want to compute it.
 }
 \value{
@@ -43,6 +51,7 @@ The algorithm is based on methods proposed by Menash, Ronenberg and Chen (2008).
   \item{case.control}{A vector for number of cases and controls}
   \item{n.total}{Total number of sample size for the study}
   \item{sig.adjust}{Ajusted significant level based on number of tests}
+  \item{Penetrances}{The penetrance rates for 0, 1 and 2 copies of disease SNP or haplotype}
 }
 \references{
 Menashe, I., Rosenberg, P. S. and Chen, B. E., (2008). PGA: power calculator for case-control genetic association analysis. BioMed Central (BMC) Genetics. vol. 9, page 36.
@@ -62,10 +71,11 @@ Menashe, I., Rosenberg, P. S. and Chen, B. E., (2008). PGA: power calculator for
 \examples{
 # Example from paper by Menash, Ronenberg and Chen (2008).
 power.cc.snp(power = 0.9, rr = 2.0, genModel = 'dom', p0 = 0.07, edf = 200)
-power.cc.snp(power = 0.9, rr = 1.7, genModel = 'dom', p0 = 0.07, edf = 200)
+power.cc.hap(power = 0.9, rr = 1.7, genModel = 'co.dom', p0 = 0.07)
 }
-\keyword{ Power } 
+\keyword{ Power} 
 \keyword{ Sample size}
 \keyword{ Case control study}
 \keyword{ Genetics}
 \keyword{ SNP}
+\keyword{ Haplotype}
