@@ -44,7 +44,7 @@ power.cc.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2,
     rr = uniroot(function(rr) eval(p.body)-power, c(1.01, 1000), tol=tol)$root
   
   power = eval(p.body)
-  NOTE = 'Power for haplotype case control study'
+  NOTE = 'Power for case control genetic studies with haplotype'
 
   structure(list(case.control = c(n1, n0), n.total = n0+n1, sig.level = sig.level, 
                  power = power, rr = rr, rr2 = rr2, Penetrance=Penetrance,

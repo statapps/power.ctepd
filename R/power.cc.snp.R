@@ -115,7 +115,7 @@ power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NUL
     rr = uniroot(function(rr) eval(p.body)-power, c(1.01, 1000), tol=tol)$root
   
   power = eval(p.body)
-  NOTE = 'Power for genetics case control studies'
+  NOTE = 'Power for genetics case control studies with SNP'
   structure(list(case.control = c(n1, n0), n.total = n0+n1, sig.level = sig.level, 
                  sig.adjust = alpha, power = power, rr = rr, rr2 = rr2, D = D,
                  Penetrance = Penetrance,  

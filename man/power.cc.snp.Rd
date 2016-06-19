@@ -50,7 +50,7 @@ The algorithm is based on methods proposed by Menash, Ronenberg and Chen (2008).
   
   \item{case.control}{A vector for number of cases and controls}
   \item{n.total}{Total number of sample size for the study}
-  \item{sig.adjust}{Ajusted significant level based on number of tests}
+  \item{sig.adjust}{Ajusted significant level based on number of tests for SNP analysis}
   \item{Penetrances}{The penetrance rates for 0, 1 and 2 copies of disease SNP or haplotype}
 }
 \references{
