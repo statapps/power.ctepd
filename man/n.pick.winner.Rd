@@ -63,6 +63,7 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 ## Example: sample size for a three arms study
 n.pick.winner(power = 0.95, p0 = 0.2, p1 = 0.35, k =3 )
 }
-\keyword{ Pick winner design }
-\keyword{ Sample size}
-\keyword{ Randomized phase II clinical trials}
+\keyword{Pick winner design }
+\keyword{Phase II}
+\keyword{Sample size}
+\keyword{Clinical trial}

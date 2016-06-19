@@ -16,22 +16,26 @@ power.cc.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2,
   Fd = c((1-f1)^2, 2*f1*(1-f1), f1^2)
   n0 = NULL
   Penetrance = NULL
+
   p.body = quote({
     n0 = n1*cc.ratio
     if(is.null(rr2))  rr2 = rr*rr
     
     RR = switch(genModel, co.dom = c(1, rr, rr^2), co.dom2 = c(1, rr, rr2),
                 dom = c(1, rr, rr), rec = c(1, 1, rr))
-
     #Baseline disease probability = r0
     r0 = p0/sum(Fd*RR)     # p0 is the same as phi in the manuscript
     Penetrance = r0*RR     # Population penetrance
     
-    a = r0*(RR[2]*f1+RR[1]*(1-f1))/p0
-    b = ((1-r0*RR[2])*f1+(1-r0*RR[1])*(1-f1))/(1-p0)
-    d = (n0*a^2+n1*b^2)/(n0*a+n1*b)   #d is the same as c in the manuscript
+    a = r0*(RR[2]*f1 + RR[1]*(1-f1))/p0
+    b = ((1-r0*RR[2])*f1 + (1-r0*RR[1])*(1-f1))/(1-p0)
 
-    delta = n0*n1*(a-b)^2/(n0*a+n1*b) * ((1-f1)+d*(1-f1)^2/(1-d*(1-f1)))
+    fh = rep(1, J)
+    f2 = fh/sum(fh)*(1-f1)
+
+    V = ((a/n1+b/n0)*diag(f2) - ((a^2/n1)+(b^2/n0))*f2%*%t(f2))/2
+    d = (a-b)*f2
+    delta = t(d)%*%solve(V)%*%d
     x2 = qchisq(1-sig.level, J)
     1 - pchisq(x2, J, ncp = delta)
   })

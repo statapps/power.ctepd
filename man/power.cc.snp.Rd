@@ -70,8 +70,8 @@ Menashe, I., Rosenberg, P. S. and Chen, B. E., (2008). PGA: power calculator for
   }
 \examples{
 # Example from paper by Menash, Ronenberg and Chen (2008).
-power.cc.snp(power = 0.9, rr = 2.0, genModel = 'dom', p0 = 0.07, edf = 200)
-power.cc.hap(power = 0.9, rr = 1.7, genModel = 'co.dom', p0 = 0.07)
+power.cc.snp(power = 0.9, rr = 2.0, genModel = 'co.dom', p0 = 0.07, edf=200)
+power.cc.hap(power = 0.9, rr = 1.7, genModel = 'co.dom', p0 = 0.07, n.hap=12)
 }
 \keyword{ Power} 
 \keyword{ Sample size}

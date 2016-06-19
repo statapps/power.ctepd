@@ -59,6 +59,9 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 pw = power.surv.test(power = 0.8, s0 = 0.83, s1 = 0.92, followup = 3, sig.level = 0.1)
 print(pw, digits = 4)
 }
-\keyword{ Power } 
-\keyword{ Sample size}
-\keyword{ One sample survival distribution}
+\keyword{Power} 
+\keyword{Sample size}
+\keyword{One sample}
+\keyword{Survival}
+\keyword{Clinical trial}
+\keyword{Phase II}
