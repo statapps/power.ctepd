@@ -48,8 +48,8 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 \seealso{
 \code{\link{power.t.test}}, 
-\code{\link{pwr.p.test}}, 
-\code{\link{pwr.2p.test}}
+\code{\link{power.2surv.test}},
+\code{\link{pwr.p.test}}
 }
 \examples{
 ##
@@ -61,7 +61,7 @@ print(pw, digits = 4)
 }
 \keyword{Power} 
 \keyword{Sample size}
-\keyword{One sample}
+\keyword{One-sample}
 \keyword{Survival}
 \keyword{Clinical trial}
 \keyword{Phase II}
