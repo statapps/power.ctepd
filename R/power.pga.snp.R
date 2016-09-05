@@ -1,4 +1,4 @@
-power.cc.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NULL, 
+power.pga.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NULL, 
                         R2=NULL, rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
                         edf=1, genModel=c('co.dom', 'co.dom2', 'dom', 'rec'), 
                         tol = .Machine$double.eps^0.25) {
