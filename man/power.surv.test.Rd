@@ -2,7 +2,7 @@
 \alias{power.surv.test}
 
 \title{
-Power and sample size for survival distribution (one sample)
+Power and sample size for survival distribution (One-sample)
 }
 \description{
 Compute power and sample size of test or determine distribution of alternative hypothesis to obtain target power (same as power.anova.test).

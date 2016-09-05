@@ -1,6 +1,6 @@
-\name{power.cc.snp}
-\alias{power.cc.snp}
-\alias{power.cc.hap}
+\name{power.pga.snp}
+\alias{power.pga.snp}
+\alias{power.pga.hap}
 
 \title{
 Power and sample size for case-control genetics studies
@@ -9,12 +9,12 @@ Power and sample size for case-control genetics studies
   Compute power and sample size of test or determine the relative risks (RR) under alternative hypothesis to obtain target power (same as power.anova.test).
 }
 \usage{
-  power.cc.snp(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NULL, 
+  power.pga.snp(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NULL, 
               R2=NULL, rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
               edf=1, genModel=c('co.dom', 'co.dom2', 'dom', 'rec'),
               tol = .Machine$double.eps^0.25)
 
-  power.cc.hap(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2, 
+  power.pga.hap(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2, 
               rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
               genModel=c('co.dom', 'co.dom2', 'dom', 'rec'),
               tol = .Machine$double.eps^0.25)
