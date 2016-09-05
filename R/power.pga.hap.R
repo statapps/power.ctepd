@@ -1,4 +1,4 @@
-power.cc.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2, 
+power.pga.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2, 
                         rr=NULL, rr2=NULL, sig.level=0.05, power = NULL, 
                         genModel=c('co.dom', 'co.dom2', 'dom', 'rec'), 
                         tol = .Machine$double.eps^0.25) {
