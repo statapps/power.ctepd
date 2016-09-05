@@ -10,6 +10,7 @@ power.pga.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2,
                   co.dom2 = 'Co-dominant model (2 degrees of freedom)',
                   dom = 'Dominant model', rec = 'Recessive model')
   f1 = dhf
+  n.hap = n.hap+1
   J = n.hap - 1
   
   ## prob of 0, 1 or 2 of disease haplogype
