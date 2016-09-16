@@ -13,8 +13,8 @@ power.pga.snp = function(n1=NULL, cc.ratio=1, p0=0.01, maf=0.05, daf=0.05, Dp=NU
     R2.max = min(p1*(1-pd), pd*(1-p1))^2/(p1*(1-p1)*pd*(1-pd))
     D = sqrt(R2*R2.max*p1*(1-p1)*pd*(1-pd))
   } else {
-    D.max = min(p1*(1-pd), pd*(1-p1));
-    D = Dp*D.max;
+    D.max = min(p1*(1-pd), pd*(1-p1))
+    D = Dp*D.max
   }
   
   # haplotype of marker allele and disease allele

@@ -1,5 +1,5 @@
 power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, 
-                         year = 3, followup = 3,
+                         year = 3, followup = 3, futile = NULL, futile.prob = 0.01,
                          power = NULL, tol = .Machine$double.eps^0.25){
   if (sum(sapply(list(n, s1, power), is.null)) != 1) 
     stop("exactly one of 'n', 's1', 'power', must be NULL")
@@ -37,14 +37,31 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   power = eval(p.body)
   lambda = k/person.year
   crtl.survf= exp(-lambda*year)
-  
+
   alternative = 'greater'
   NOTE = 'Based on the assumption of Poisson Process'
   METHOD = 'One sample test for survival distribution'
 
-  structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, 
+  fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, 
      crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, 
-     power = power, alternative = alternative, note = NOTE, 
-     method = METHOD), class = "power.htest")
+     power = power, alternative = alternative, 
+     note = NOTE, method = METHOD), class = "power.htest")
+
+  if(is.numeric(futile)) {
+    lambda1 = -log(s1)/year
+    if (futile > 1 | futile < 0) stop("futile shall be between 0 and 1")
+    futile.py = person.year*futile
+    cat(lambda1, lambda1*futile.py)
+    futile.event = qpois(1-futile.prob, lambda1*futile.py)
+
+    fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year,
+    crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, power = power, 
+    futile.pyear = futile.py, futile.event = futile.event, futile.prob = futile.prob, 
+    alternative = alternative, note = NOTE, method = METHOD), class = "power.htest")
+
+  }
+
+
+  return(fit)
 }
 
