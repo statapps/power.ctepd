@@ -22,7 +22,7 @@ power.surv.test(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   \item{power}{Power of test (1 minus Type II error probability)}
   \item{futile}{Optinal futility analysis, define the percentage of pearson-year for futility analysis. Value shall be between 0 and 1. Default is NULL.
 }
-  \item{futile.prob}{Significant level of futility analysis. Probability of rejecting the alternative hypothesis when H1 is true. Default is 0.001}
+  \item{futile.prob}{Significant level of futility analysis. Probability of rejecting the alternative hypothesis when H1 is true. Default is 0.01}
 
   \item{tol}{tol for uniroot function}
 }
