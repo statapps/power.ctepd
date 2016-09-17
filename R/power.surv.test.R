@@ -51,14 +51,14 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     lambda1 = -log(s1)/year
     if (futile > 1 | futile < 0) stop("futile shall be between 0 and 1")
     futile.py = person.year*futile
-    cat(lambda1, lambda1*futile.py)
-    futile.event = qpois(1-futile.prob, lambda1*futile.py)
+    rate1 = lambda1*futile.py
+    futile.event = qpois(1-futile.prob, rate1)
+    futile.prob = 1-ppois(futile.event, rate1)
 
     fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year,
     crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, power = power, 
     futile.pyear = futile.py, futile.event = futile.event, futile.prob = futile.prob, 
     alternative = alternative, note = NOTE, method = METHOD), class = "power.htest")
-
   }
 
 
