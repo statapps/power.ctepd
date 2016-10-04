@@ -15,20 +15,23 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     
     k = qpois(sig.level, person.year*lambda0)
     alpha = ppois(k, person.year*lambda0)
+
     while(k>0 & alpha > sig.level){
-      k = k - 1
+      followup = followup*1.001
+      person.year = n*(1-exp(-lambda0*followup))/lambda0
       alpha =  ppois(k, person.year*lambda0)
     }
     sig.level = alpha
 
     # lambda*t = n*person.year1*lambda1  
+    # get power
     ppois(k, n*(1-exp(-lambda1*followup)))
   })
 
   if(is.null(power))
     power = eval(p.body)
   else if (is.null(n))
-    n = uniroot(function(n) eval(p.body) - power, c(25+1e-10, 1e+07), 
+    n = uniroot(function(n) eval(p.body) - power, c(5 +1e-10, 1e+07), 
                 extendInt="upX", tol = tol)$root
   else if (is.null(s1))
     s1 = uniroot(function(s1) eval(p.body) - power, c(s0, 0.99))$root
@@ -42,7 +45,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   NOTE = 'Based on the assumption of Poisson Process'
   METHOD = 'One sample test for survival distribution'
 
-  fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, 
+  fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur=followup,
      crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, 
      power = power, alternative = alternative, 
      note = NOTE, method = METHOD), class = "power.htest")
@@ -55,13 +58,11 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     futile.event = qpois(1-futile.prob, rate1)
     futile.prob = 1-ppois(futile.event, rate1)
 
-    fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year,
+    fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur = followup,
     crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, power = power, 
     futile.pyear = futile.py, futile.event = futile.event, futile.prob = futile.prob, 
     alternative = alternative, note = NOTE, method = METHOD), class = "power.htest")
   }
-
-
   return(fit)
 }
 
