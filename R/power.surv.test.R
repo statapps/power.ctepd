@@ -56,7 +56,13 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     futile.py = person.year*futile
     rate1 = lambda1*futile.py
     futile.event = qpois(1-futile.prob, rate1)
-    futile.prob = 1-ppois(futile.event, rate1)
+    alpha1 = 1-ppois(futile.event, rate1)
+    while(alpha1 < futile.prob*0.995) {
+      futile.py = futile.py*1.0001
+      rate1 = lambda1*futile.py
+      alpha1 = 1-ppois(futile.event, rate1)
+    }
+    futile.prob = alpha1
 
     fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur = followup,
     crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, power = power, 
