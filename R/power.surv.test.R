@@ -1,31 +1,39 @@
-power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, 
-                         year = 3, followup = 3, futile = NULL, futile.prob = 0.01,
+power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, year = 3,
+                         accrual = 3, followup = 3, futile = NULL, futile.prob = 0.01,
                          power = NULL, tol = .Machine$double.eps^0.25){
   if (sum(sapply(list(n, s1, power), is.null)) != 1) 
     stop("exactly one of 'n', 's1', 'power', must be NULL")
 
   lambda0 = -log(s0)/year
+  a = accrual
+  b = followup
 
   # initial output value for person.year and critical value k
   person.year = 0
   k = 0
   p.body = quote({
     lambda1 = -log(s1)/year
-    person.year = n*(1-exp(-lambda0*followup))/lambda0
+    #person.year = n*(1-exp(-lambda0*followup))/lambda0
+    dur = (1-1/(lambda0*a)*exp(-lambda0*b)*(1-exp(-lambda0*a)))/lambda0
+    person.year = n*dur
     
     k = qpois(sig.level, person.year*lambda0)
     alpha = ppois(k, person.year*lambda0)
 
     while(k>0 & alpha > sig.level){
-      followup = followup*1.001
-      person.year = n*(1-exp(-lambda0*followup))/lambda0
+      b = b*1.001
+      dur = (1-1/(lambda0*a)*exp(-lambda0*b)*(1-exp(-lambda0*a)))/lambda0
+      person.year = n*dur
+      #person.year = n*(1-exp(-lambda0*followup))/lambda0
       alpha =  ppois(k, person.year*lambda0)
     }
     sig.level = alpha
 
     # lambda*t = n*person.year1*lambda1  
     # get power
-    ppois(k, n*(1-exp(-lambda1*followup)))
+    dur1 = 1-1/(lambda1*a)*exp(-lambda1*b)*(1-exp(-lambda1*a))
+    #person.year1 = n*dur/lambda1*lambda1
+    ppois(k, n*dur1)
   })
 
   if(is.null(power))
@@ -45,7 +53,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   NOTE = 'Based on the assumption of Poisson Process'
   METHOD = 'One sample test for survival distribution'
 
-  fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur=followup,
+  fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur=dur,
      crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, 
      power = power, alternative = alternative, 
      note = NOTE, method = METHOD), class = "power.htest")
@@ -64,7 +72,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
     }
     futile.prob = alpha1
 
-    fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur = followup,
+    fit = structure(list(n = n, s0 = s0, s1 = s1, person.year = person.year, median.dur = dur,
     crtl.event = k, crtl.survf = crtl.survf, sig.level = sig.level, power = power, 
     futile.pyear = futile.py, futile.event = futile.event, futile.prob = futile.prob, 
     alternative = alternative, note = NOTE, method = METHOD), class = "power.htest")
