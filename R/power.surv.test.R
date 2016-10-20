@@ -21,7 +21,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, year 
     alpha = ppois(k, person.year*lambda0)
 
     while(k>0 & alpha > sig.level){
-      b = b*1.001
+      b = b*1.0001
       dur = (1-1/(lambda0*a)*exp(-lambda0*b)*(1-exp(-lambda0*a)))/lambda0
       person.year = n*dur
       #person.year = n*(1-exp(-lambda0*followup))/lambda0
