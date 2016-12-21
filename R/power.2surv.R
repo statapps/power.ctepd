@@ -31,7 +31,7 @@ power.2surv.test = function (n = NULL, sig.level = 0.05, hr = NULL, s0 = 0.7,
     event_rate = w0*event_rate0 + w1*event_rate1
     #ev0 = floor(w0*n*event_rate0)
     #ev1 = floor(w1*n*event_rate1)
-    n.event = n*event_rate 
+    n.event = floor(n*event_rate)
     1-pnorm(za, -delta/sqrt(1/(w0*w1*n.event)))
   })
   if (is.null(power)) 
