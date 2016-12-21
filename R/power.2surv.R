@@ -28,11 +28,11 @@ power.2surv.test = function (n = NULL, sig.level = 0.05, hr = NULL, s0 = 0.7,
     s1 = exp(-lambda1*year)
     event_rate0 = 1+(exp(-lambda0*td)-exp(-lambda0*f))/(lambda0*a)
     event_rate1 = 1+(exp(-lambda1*td)-exp(-lambda1*f))/(lambda1*a)
-    #event_rate = (1-w1)*event_rate0 + w1*event_rate1
-    ev0 = floor(w0*n*event_rate0)
-    ev1 = floor(w1*n*event_rate1)
-    n.event = ev0 + ev1
-    1-pnorm(za, -delta/sqrt(1/ev0 + 1/ev1))
+    event_rate = w0*event_rate0 + w1*event_rate1
+    #ev0 = floor(w0*n*event_rate0)
+    #ev1 = floor(w1*n*event_rate1)
+    n.event = n*event_rate 
+    1-pnorm(za, -delta/sqrt(1/(w0*w1*n.event))
   })
   if (is.null(power)) 
     power = eval(p.body)
@@ -42,7 +42,7 @@ power.2surv.test = function (n = NULL, sig.level = 0.05, hr = NULL, s0 = 0.7,
     hr = uniroot(function(hr) eval(p.body) - power, c(0.1, 0.99), tol=tol)$root
   
   n.trt = ceiling(n*w1)
-  n.ctl = ceiling(n*(1-w1))
+  n.ctl = ceiling(n*w0)
   n = n.ctl + n.trt
   
   n.annual = n/a

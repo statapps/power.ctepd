@@ -46,7 +46,8 @@ Object of class 'power.htest', a list of the arguments (including the computed o
   \item{n.event}{Total number of events required}
 }
 \references{
-Lawless, J. Statistical Models and Methods for Lifetime Data, John Wiley and Sons, 1982.
+1. Lawless, J. Statistical Models and Methods for Lifetime Data, John Wiley and Sons, 1982.
+2. Chow, S. C., Shao, J. and Wang, H. S. Sample szie calculations in clinical research (second edition, 2008). page 177. equation 7.3.6 
 }
 \author{
 Bingshu E. Chen (bingshu.chen@queensu.ca)
