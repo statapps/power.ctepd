@@ -19,6 +19,7 @@ power.2surv.test = function (n = NULL, sig.level = 0.05, hr = NULL, s0 = 0.7,
   n.event = 0
   za = qnorm(1-sig.level/tside)
   w1 = 1/(1+ct.ratio)
+  w0 = 1-w1
   s1 = 0
   
   p.body = quote({
@@ -27,9 +28,11 @@ power.2surv.test = function (n = NULL, sig.level = 0.05, hr = NULL, s0 = 0.7,
     s1 = exp(-lambda1*year)
     event_rate0 = 1+(exp(-lambda0*td)-exp(-lambda0*f))/(lambda0*a)
     event_rate1 = 1+(exp(-lambda1*td)-exp(-lambda1*f))/(lambda1*a)
-    event_rate = (1-w1)*event_rate0 + w1*event_rate1
-    n.event = floor(n*event_rate)
-    1-pnorm(za, -delta/sqrt(4/n.event))
+    #event_rate = (1-w1)*event_rate0 + w1*event_rate1
+    ev0 = floor(w0*n*event_rate0)
+    ev1 = floor(w1*n*event_rate1)
+    n.event = ev0 + ev1
+    1-pnorm(za, -delta/sqrt(1/ev0 + 1/ev1))
   })
   if (is.null(power)) 
     power = eval(p.body)
