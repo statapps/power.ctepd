@@ -13,13 +13,12 @@ conditional.power = function(tk = 0.0, theta=0.5, sig.level = 0.025, power = 0.8
   qtu = zk*sqrt(Ik) - za*sqrt(Im)+theta*(Im-Ik)
   qtu = qtl/sqrt(Im-Ik)
   cpu = pnorm(qtu)*100
-  cat('\n Upper conditional power = ', cpu, '\n')
   NOTE = 'c.power.low is lower conditional power for one-side futility analysis. \n      c.power is for two-sided test.'
   METHOD = 'Conditional Power for sequencial tests'
 
   cat('\n Two-sided conditional power = ', (cpl+cpu), '\n')
   fit = structure(list(c.power.low = cpl, c.power.up = cpu, c.power = cpl + cpu,
-            zk = zk, I.max = Im, 
+            zk = zk, theta = theta, I.max = Im, 
             sig.level = sig.level, power = power, time = tm,
             note = NOTE, method = METHOD), 
             class = "power.htest")
@@ -36,3 +35,23 @@ c.power.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm 
 
   return(fit)
 }
+
+c.power.tt = function(muk = 0.0, mu = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5, 
+                    sigma = 1.0, cc.ratio = 1) {
+  theta = mu/sigma
+  tk    = muk/sigma
+
+  za = -qnorm(sig.level)
+  zb =  qnorm(power)
+  n.total = ((za+zb)/theta)^2 *(2 + cc.ratio + 1/cc.ratio)
+  n1 = ceiling(n.total*cc.ratio/(1+cc.ratio))
+  n0 = ceiling(n.total/(1+cc.ratio))
+  n.total = n1 + n0
+
+  fit = conditional.power(tk = tk, theta = theta, sig.level = sig.level, power = power, tm = tm)
+  fit$trt.ctl = c(n1, n0)
+  fit$n.total = n.total
+
+  return(fit)
+}
+
