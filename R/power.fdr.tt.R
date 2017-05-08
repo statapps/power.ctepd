@@ -13,7 +13,7 @@ power.fdr.tt = function(n1=NULL, cc.ratio=1, pi0=0.99, fdr=0.05, delta=NULL, pow
     n  = n1 + n0 - 2
     theta = delta/(sigma*sqrt(1/n1+1/n0))
     cg = uniroot(function(x) {
-      supressWarings(2*pt(-x, n)/(1-pt(x, n, theta)+pt(-x, n, theta))) - Lambda
+      suppressWarnings(2*pt(-x, n)/(1-pt(x, n, theta)+pt(-x, n, theta))) - Lambda
     }, c(0.0000001, 100), tol = 0.001)$root
     suppressWarnings(1-pt(cg, n, theta)+pt(-cg, n, theta))
   })

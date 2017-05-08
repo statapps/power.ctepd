@@ -35,12 +35,11 @@ Notice that the last one has non-NULL default so NULL must be explicitly passed 
   \item{case.control}{A vector for number of cases and controls}
   \item{n.total}{Total number of sample size for the study}
   \item{pi0}{Percentage of null distributions}
-  \item{sigma} {Varaince of the distribution}
+  \item{sigma}{Varaince of the distribution}
   \item{fdr}{False Discovery Rate}
-  \item{Power} {Power of the test}
-  \item{delta} {Difference of means under althernative hypothesis}
-  \item{c.reject} {Critical value to reject the null hypothesis}
-  \
+  \item{Power}{Power of the test}
+  \item{delta}{Difference of means under althernative hypothesis}
+  \item{c.reject}{Critical value to reject the null hypothesis}
 }
 \references{
 Liu, P. and Hwang J T.(2007). Quick calculation for sample size while controlling false
@@ -60,8 +59,8 @@ discovery rate with application to microarray analysis. Bioinformatics, 23, 739-
     \code{\link{pwr.2p.test}}
   }
 \examples{
-# Example from paper by Menash, Ronenberg and Chen (2008).
-power.fdr.tt(n1 = 45, delta = 0.5, pi0 = 0.9, fdr = 0.1)
+# Example from the paper.
+power.fdr.tt(n1 = 45, delta = 0.3, pi0 = 0.9, sigma = 0.5, fdr = 0.1)
 }
 \keyword{ Power} 
 \keyword{ Sample size}

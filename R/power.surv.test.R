@@ -7,6 +7,7 @@ power.surv.test=function(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, year 
   lambda0 = -log(s0)/year
   a = accrual
   b = followup
+  dur = a/2+b
 
   # initial output value for person.year and critical value k
   person.year = 0

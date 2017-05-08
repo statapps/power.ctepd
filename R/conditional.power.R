@@ -13,11 +13,11 @@ conditional.power = function(tk = 0.0, theta=0.5, sig.level = 0.025, power = 0.8
   qtu = zk*sqrt(Ik) - za*sqrt(Im)+theta*(Im-Ik)
   qtu = qtl/sqrt(Im-Ik)
   cpu = pnorm(qtu)*100
-  NOTE = 'c.power.low is lower conditional power for one-side futility analysis. \n      c.power is for two-sided test.'
+  NOTE = 'cpower.low is lower conditional power for one-side futility analysis. \n      cpower is for two-sided test.'
   METHOD = 'Conditional Power for sequencial tests'
 
   cat('\n Two-sided conditional power = ', (cpl+cpu), '\n')
-  fit = structure(list(c.power.low = cpl, c.power.up = cpu, c.power = cpl + cpu,
+  fit = structure(list(cpower.low = cpl, cpower.up = cpu, cpower = cpl + cpu,
             zk = zk, theta = theta, I.max = Im, 
             sig.level = sig.level, power = power, time = tm,
             note = NOTE, method = METHOD), 
@@ -25,7 +25,7 @@ conditional.power = function(tk = 0.0, theta=0.5, sig.level = 0.025, power = 0.8
   return(fit)
 }
 
-c.power.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5) {
+cpower.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5) {
   theta = log(HR)
   tk    = log(hrk)
   fit = conditional.power(tk = tk, theta = theta, sig.level = sig.level, power = power, tm = tm)
@@ -36,7 +36,7 @@ c.power.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm 
   return(fit)
 }
 
-c.power.tt = function(muk = 0.0, mu = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5, 
+cpower.tt = function(muk = 0.0, mu = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5, 
                     sigma = 1.0, cc.ratio = 1) {
   theta = mu/sigma
   tk    = muk/sigma
@@ -54,4 +54,3 @@ c.power.tt = function(muk = 0.0, mu = 0.7, sig.level = 0.025, power = 0.8, tm = 
 
   return(fit)
 }
-

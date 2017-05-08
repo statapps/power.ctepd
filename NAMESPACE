@@ -1,2 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 import(pwr)
+importFrom("stats", "pnorm", "ppois", "qnorm", "qpois", "uniroot")

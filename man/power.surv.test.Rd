@@ -9,8 +9,9 @@ Compute power and sample size of test or determine distribution of alternative h
 }
 \usage{
 power.surv.test(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL, 
-                         year = 3, followup = 3, futile = NULL, futile.prob = 0.01,
-                         power = NULL, tol = .Machine$double.eps^0.25)
+                year = 3, accrual = 3, followup = 3, futile = NULL, 
+                futile.prob = 0.01, power = NULL, 
+                tol = .Machine$double.eps^0.25)
 }
 \arguments{
   \item{n}{Number of observations}
@@ -18,6 +19,7 @@ power.surv.test(n = NULL, sig.level = 0.05, s0 = NULL, s1 = NULL,
   \item{year}{Time point in which survival function is evaluated}
   \item{s0}{Survival function at yaer = year under H0}
   \item{s1}{Survival function at yaer = year under H1}
+  \item{accrual}{Years of accrual}
   \item{followup}{Years of followup}
   \item{power}{Power of test (1 minus Type II error probability)}
   \item{futile}{Optinal futility analysis, define the percentage of pearson-year for futility analysis. Value shall be between 0 and 1. Default is NULL.
@@ -37,7 +39,7 @@ Notice that the last one has non-NULL default so NULL must be explicitly passed 
 Object of class 'power.htest', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
 
   \item{person.year}{Total person-year of followup required for the final analysis}
-  \item{median.dur} {Median duration of followup}
+  \item{median.dur}{Median duration of followup}
   \item{crtl.event}{Critical value for number of observed events to reject the null hypothesis H0}
   \item{crtl.survf}{Critical value for observed survival function at year = year to reject the null hypothesis H0}
   \item{futile.pyear}{Person-year for interim futility analysis}
