@@ -47,6 +47,7 @@ Object of class 'power.htest', a list of the arguments (including the computed o
 }
 \references{
 1. Lawless, J. Statistical Models and Methods for Lifetime Data, John Wiley and Sons, 1982.
+
 2. Chow, S. C., Shao, J. and Wang, H. S. Sample szie calculations in clinical research (second edition, 2008). page 177. equation 7.3.6 
 }
 \author{
