@@ -39,8 +39,8 @@ Conditional power for sequential tests.
 }
 
 \details{
-Calculate conditional power for sequential tests in clinical trials to provide information on wheather 
-or not to futile a study.
+Calculate conditional power for sequential tests in clinical trials to provide information on 
+whether or not to futile a study.
 The algorithm is based on methods by Jennison and Turnbull (2000) Chapter 10, page 207-220.
 }
 \value{
