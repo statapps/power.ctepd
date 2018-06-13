@@ -1,3 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-import(pwr)
-importFrom("stats", "pnorm", "ppois", "qnorm", "qpois", "uniroot")
+import(pwr, survexp.fr)
+importFrom("graphics", "plot", "title")
+importFrom("stats", "dcauchy", "dgamma", "dnorm", "dunif", "glm", "pchisq", "poisson", "pnorm", "ppois", "pt", "punif", "qcauchy", "qgamma", "qt", "quantile", "qnorm", "qpois",  "rbinom", "rnorm", "runif", "sd", "uniroot")
