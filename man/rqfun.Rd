@@ -1,6 +1,7 @@
 \name{rqfun}
 \alias{rqfun}
-\alias{rqfun.default}
+\alias{plot.rqfun}
+\alias{print.rqfun}
 
 \title{
   rqfun object.
@@ -9,9 +10,7 @@
   Create a rqfun object for power.rq.test.
 }
 \usage{
-  rqfun(x, ...)
-
-  \method{rqfun}{default}(mu=0, sd=1, dist='norm', term=c('1'), pos=2, method='exact', a=NA,  b=NA)
+  rqfun(mu=0, sd=1, dist='norm', term=c('1'), pos=2, method='exact', a=NA,  b=NA)
 }
 \arguments{
   \item{mu}{Mean of independent variable under univariate case.}
@@ -22,10 +21,14 @@
   \item{method}{"exact" or "sim" which are the methods to compute variance of regression coefficients, "exact" method is recommended when variables are chosen from x,x^2,x^3,...,and x^5}
   \item{a}{If dist is "unif", this is the lower limit of uniform distribution. It is optional if "mu" and "sd" are already specified.}
   \item{b}{If dist is "unif", this is the upper limit of uniform distribution. It is optional if "mu" and "sd" are already specified.}
-  }
+}
 
 \examples{
-    #Construct x
-    x = rqfun(mu = 5, sd = 1.5, dist = "norm", pos = 2, term = c('1','log','1/sqrt'),a=NA,b=NA, method = 'exact')
-    }
+  #Construct x
+  x = rqfun(mu = 5, sd = 1.5, dist = "norm", pos = 2, term = c('1','log','1/sqrt'),a=NA,b=NA, method = 'exact')
+
+  ## plot and print function can be used to summary the rqfun function
+  #print(x)
+  #plot(x)
+}
     

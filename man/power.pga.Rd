@@ -49,8 +49,14 @@ The algorithm is based on methods proposed by Menash, Ronenberg and Chen (2008).
   Object of class 'power.htest', a list of the arguments (including the computed one) augmented with 'method' and 'note' elements.
   
   \item{case.control}{A vector for number of cases and controls}
+  \item{D_max}{Maximum disequilibrium D_max = min(p1(1-pd), pd(1-p1)), output for power.pga.snp}
+  \item{D}{Non-scaled disequilibrium with D = Dp*D.max, or D = r*D.max, where D.max is the maximum disequilibrium, with D.max = min(p1(1-pd), pd(1-p1)). This is an output for power.pga.snp}
   \item{n.total}{Total number of sample size for the study}
+  \item{power}{Power of the study}
+  \item{rr}{Releative risk with one copy of disease allele or disease haplotype}
+  \item{rr2}{Relative risk with two copies of diseaes allele or diseas haplotype}
   \item{sig.adjust}{Ajusted significant level based on number of tests for SNP analysis}
+  \item{sig.level} {Significant level}
   \item{Penetrances}{The penetrance rates for 0, 1 and 2 copies of disease SNP or haplotype}
 }
 \references{

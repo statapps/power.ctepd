@@ -39,7 +39,7 @@ Bingshu E. Chen (bingshu.chen@queensu.ca)
 %%\note{}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 \seealso{
-\code{\link{SMR}}, 
+\code{\link{SMR}}, \code{\link{survexp.us}}, \code{\link{survexp.fr}}. 
 }
 \examples{
 ##
