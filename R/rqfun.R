@@ -4,11 +4,9 @@
 #    x = rqfun(mu = 3, sd = 5)
 #
 
-rqfun = function(x, ...) UseMethod("rqfun")
-
 ########################Initiate regression function#####################################
-rqfun.default = function(mu=0, sd=1, dist='norm', term=c('1'), pos=2, method='exact',
-                         a =NA,  b=NA) {
+rqfun = function(mu=0, sd=1, dist='norm', term=c('1'), pos=2, method='exact',
+                         a=NA,  b=NA) {
   x = list(mu=mu, sd=sd, dist=dist, term=term, pos=pos, method=method)
   if (x$dist == 'bin') {
     if (x$mu<0||x$mu>1)

@@ -13,7 +13,7 @@ power.pga.hap = function(n1=NULL, cc.ratio=1, p0=0.01, dhf=0.05, n.hap=2,
   n.hap = n.hap+1
   J = n.hap - 1
   
-  ## prob of 0, 1 or 2 of disease haplogype
+  ## prob of 0, 1 or 2 of disease haplotype
   Fd = c((1-f1)^2, 2*f1*(1-f1), f1^2)
   n0 = NULL
   Penetrance = NULL

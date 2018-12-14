@@ -2,6 +2,8 @@
 #
 # Modify the file from SMR in survexp.fr package
 #
+data(survexp.ca)
+
 smr.ca = function(time, event, age, sex, ratetable = survexp.ca, alpha = 0.05) {
   n = length(age)
   age = ceiling(age)
