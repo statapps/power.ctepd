@@ -1,18 +1,24 @@
-conditional.power = function(tk = 0.0, theta=0.5, sig.level = 0.025, power = 0.8, tm = 0.5) {
+conditional.power = function(tk = 0.0, theta=-0.5, sig.level = 0.025, power = 0.8, tm = 0.5) {
+  if(theta > 0) {
+    cat("\n theta > 0 is transformed to -theta for one-sided test H0: theta<0\n")
+    tk    = tk - theta
+    theta =  0 - theta
+  }
   za = -qnorm(sig.level)
   zb =  qnorm(power)
   Im = ((za+zb)/theta)^2        ## Im for full information
   Ik = Im * tm
   zk = tk * sqrt(Ik)
 
-  qtl = zk*sqrt(Ik) - za*sqrt(Im)+theta*(Im-Ik)
+  qtl = -zk*sqrt(Ik) - za*sqrt(Im)-theta*(Im-Ik)
   qtl = qtl/sqrt(Im-Ik)
   cpl = pnorm(qtl)*100
-  cat('\n One-sided conditional power = ', cpl, '\n')
+  cat('\n One-sided (H0: theta<0) conditional power = ', cpl, '\n')
 
   qtu = zk*sqrt(Ik) - za*sqrt(Im)+theta*(Im-Ik)
   qtu = qtl/sqrt(Im-Ik)
   cpu = pnorm(qtu)*100
+  #cat('\n One-sided conditional power = ', cpu, '\n')
   NOTE = 'cpower is conditional power for one-side futility analysis.' #\n      cpower is for two-sided test.'
   METHOD = 'Conditional Power for sequential tests'
 
@@ -26,7 +32,7 @@ conditional.power = function(tk = 0.0, theta=0.5, sig.level = 0.025, power = 0.8
 }
 
 cpower.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm = 0.5) {
-  if(HR > 1) stop("This program only works for superiority trial with HR < 1\n")
+  #if(HR > 1) stop("This program only works for superiority trial with HR < 1\n")
   theta = log(HR)
   tk    = log(hrk)
   fit = conditional.power(tk = tk, theta = theta, sig.level = sig.level, power = power, tm = tm)
