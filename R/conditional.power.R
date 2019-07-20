@@ -1,7 +1,8 @@
 conditional.power = function(tk = 0.0, theta=-0.5, sig.level = 0.025, power = 0.8, tm = 0.5) {
+  cat("\n Conditional power to reject null hypothesis H0: theta = 0")
   if(theta > 0) {
     cat("\n theta > 0 is transformed to -theta for one-sided test H1: theta=delta (<0)\n")
-    tk    = tk - theta
+    tk    =  0 - tk
     theta =  0 - theta
   }
   za = -qnorm(sig.level)
@@ -35,6 +36,12 @@ cpower.surv = function(hrk = 1.0, HR = 0.7, sig.level = 0.025, power = 0.8, tm =
   #if(HR > 1) stop("This program only works for superiority trial with HR < 1\n")
   theta = log(HR)
   tk    = log(hrk)
+  if(HR > 1) {
+    cat("\n HR > 1, test for non-inferiority.")
+    theta = log(1/HR)
+    tk    = log(hrk/HR)
+  } else cat("\n HR < 1, test for superiority.")
+  
   fit = conditional.power(tk = tk, theta = theta, sig.level = sig.level, power = power, tm = tm)
   fit$HR.k = hrk
   fit$HR   = HR
