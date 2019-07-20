@@ -1,6 +1,6 @@
 conditional.power = function(tk = 0.0, theta=-0.5, sig.level = 0.025, power = 0.8, tm = 0.5) {
   if(theta > 0) {
-    cat("\n theta > 0 is transformed to -theta for one-sided test H0: theta<0\n")
+    cat("\n theta > 0 is transformed to -theta for one-sided test H1: theta=delta (<0)\n")
     tk    = tk - theta
     theta =  0 - theta
   }
@@ -13,7 +13,7 @@ conditional.power = function(tk = 0.0, theta=-0.5, sig.level = 0.025, power = 0.
   qtl = -zk*sqrt(Ik) - za*sqrt(Im)-theta*(Im-Ik)
   qtl = qtl/sqrt(Im-Ik)
   cpl = pnorm(qtl)*100
-  cat('\n One-sided (H0: theta<0) conditional power = ', cpl, '\n')
+  cat('\n One-sided conditional power at H1: theta=delta(<0):', cpl, '\n')
 
   qtu = zk*sqrt(Ik) - za*sqrt(Im)+theta*(Im-Ik)
   qtu = qtl/sqrt(Im-Ik)
