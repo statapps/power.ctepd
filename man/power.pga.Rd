@@ -56,7 +56,7 @@ The algorithm is based on methods proposed by Menash, Ronenberg and Chen (2008).
   \item{rr}{Releative risk with one copy of disease allele or disease haplotype}
   \item{rr2}{Relative risk with two copies of diseaes allele or diseas haplotype}
   \item{sig.adjust}{Ajusted significant level based on number of tests for SNP analysis}
-  \item{sig.level} {Significant level}
+  \item{sig.level}{Significant level}
   \item{Penetrances}{The penetrance rates for 0, 1 and 2 copies of disease SNP or haplotype}
 }
 \references{
