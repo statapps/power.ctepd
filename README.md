@@ -3,7 +3,7 @@
 ## Power and sample size for clinical trials and epidemiology
 
 "power.ctepd" is a R package for power and sample size calculations.
-Please use the following steps to install 'bhm' package:
+Please use the following steps to install 'power.ctepd' package:
 
 1. First, you need to install the 'devtools' package. You can skip this step if you have '
 devtools' inst
@@ -15,7 +15,7 @@ alled in your R. Invoke R and then type
 
   library(devtools)
 
-3. Install "power.ctepd" package with R commond
+3. Install "power.ctepd" package with R command
 
   install_github("statapps/ctepd")
 
